@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Suilli - Python代码评测平台{% endblock %}</title>
+
+    <!-- 公共样式 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // 启用暗色模式
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        danger: '#F87272',
+                        warning: '#FBBD23',
+                        dark: {
+                            100: '#334155', // 浅暗色背景
+                            200: '#1E293B', // 主暗色背景
+                            300: '#0F172A', // 深暗色背景
+                        },
+                        light: {
+                            100: '#F8FAFC', // 浅亮色背景
+                            200: '#F1F5F9', // 主亮色背景
+                            300: '#E2E8F0', // 边框色
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        code: ['Consolas', 'Monaco', 'monospace']
+                    },
+                    boxShadow: {
+                        'elevation-1': '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
+                        'elevation-2': '0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)',
+                        'elevation-3': '0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body class="font-inter bg-light-100 text-dark-300 dark:bg-dark-200 dark:text-light-200 antialiased theme-transition">
+    <!-- 导航栏 -->
+    <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-300/90 backdrop-blur-sm nav-shadow transition-all duration-300 theme-transition">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="text-primary text-3xl">
+                    <i class="fa-brands fa-python"></i>
+                </div>
+                <a href="#" class="text-2xl font-bold text-primary">Suilli</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{{ url_for('index', username=session.username, user_id=session.user_id) }}" class="py-2 font-medium hover:text-primary transition-colors">首页</a>
+                <a href="{{ url_for('problem_index', username=session.username, user_id=session.user_id) }}" class="font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors">题库</a>
+                <a href="{{ url_for('forum') }}" class="font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors">论坛</a>
+                <a href="/dashboard" class="font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors {% if request.path == '/dashboard' %}border-b-2 border-primary pb-1{% endif %}">个人信息</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-100 transition-colors">
+                    <i class="fa-solid fa-moon dark:hidden text-dark-300"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline-block text-yellow-400"></i>
+                </button>
+                <button class="hidden md:block bg-primary hover:bg-primary/90 text-white font-medium px-5 py-2 rounded-lg transition-colors btn-effect">
+                    <a href="/">退出登录</a>
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-100 transition-colors">
+                    <i class="fa-solid fa-bars text-dark-300 dark:text-light-200"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-dark-300 border-t border-gray-100 dark:border-dark-100 theme-transition">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="{{ url_for('index', username=session.username, user_id=session.user_id) }}" class="py-2 font-medium hover:text-primary transition-colors">首页</a>
+                <a href="{{ url_for('problem_index', username=session.username, user_id=session.user_id) }}" class="py-2 font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors">题库</a>
+                <a href="{{ url_for('forum') }}" class="font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors">论坛</a>
+                <a href="/dashboard" class="font-medium text-dark-300 dark:text-light-200 hover:text-primary transition-colors {% if request.path == '/dashboard' %}border-b-2 border-primary pb-1{% endif %}">个人信息</a>
+                <button class="bg-primary hover:bg-primary/90 text-white font-medium px-5 py-2 rounded-lg transition-colors btn-effect">
+                    <a href="/first">退出登录</a>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 内容区域 -->
+    <main class="container mx-auto px-4 pt-24 pb-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark-200 dark:bg-dark-300 text-light-200 pt-16 pb-8 theme-transition">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="text-primary text-3xl">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Suilli</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Suilli 是一个专业的 Python 代码评测平台，帮助学习者提升编程技能。</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="{{ url_for('index', username=session.username, user_id=session.user_id) }}" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="{{ url_for('problem_index', username=session.username, user_id=session.user_id) }}" class="text-gray-400 hover:text-white transition-colors">题库</a></li>
+                        <li><a href="{{ url_for('forum') }}" class="text-gray-400 hover:text-white transition-colors">论坛</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">学习资源</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Python 教程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">编程指南</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">社区讨论</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-map-marker-alt text-primary mt-1"></i>
+                            <span class="text-gray-400">中国石油大学（华东）</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-primary"></i>
+                            <a href="mailto:contact@suilli.com" class="text-gray-400 hover:text-white transition-colors">3374161455@qq.com</a>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-primary"></i>
+                            <a href="tel:+8610123456789" class="text-gray-400 hover:text-white transition-colors">+86(10)19854297892</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center theme-transition">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 Suilli. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 公共脚本 -->
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/regist.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        neutral: {
+                            100: '#F9FAFB',
+                            200: '#F3F4F6',
+                            300: '#E5E7EB',
+                            400: '#D1D5DB',
+                            500: '#9CA3AF',
+                            600: '#6B7280',
+                            700: '#4B5563',
+                            800: '#1F2937',
+                            900: '#111827',
+                        }
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'elegant': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02)',
+                        'hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                },
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-neutral-100 min-h-screen flex flex-col opacity-0">
+    <!-- 背景装饰 -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/5 to-neutral-100"></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-secondary/10 blur-3xl"></div>
+    </div>
+
+    <!-- 顶部导航 -->
+    <header class="py-4 px-6 md:px-10 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center">
+                <i class="fa fa-shield text-white text-xl"></i>
+            </div>
+            <span class="text-xl font-bold text-neutral-800">Suilli账号注册</span>
+        </div>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="/" class="text-neutral-600 hover:text-primary transition-custom">首页</a></li>
+                <li><a href="#" class="text-neutral-600 hover:text-primary transition-custom">帮助</a></li>
+                <li><a href="#" class="text-neutral-600 hover:text-primary transition-custom">联系我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-md">
+            <!-- 注册卡片 -->
+            <div class="bg-white rounded-2xl shadow-elegant overflow-hidden card-hover">
+                <!-- 卡片头部 -->
+                <div class="bg-gradient-primary p-6 text-white">
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold">创建新账户</h2>
+                    <p class="mt-1 opacity-90">填写以下信息注册账号</p>
+                </div>
+
+                <!-- 表单区域 -->
+                <div class="p-8">
+                    <form action="/registuser" method="get" class="space-y-6">
+                        <!-- 用户名输入 -->
+                        <div class="space-y-2">
+                            <label for="user" class="block text-sm font-medium text-neutral-700">用户名</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-500">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input type="text" id="user" name="user" class="w-full pl-10 pr-4 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-custom" placeholder="请输入用户名">
+                            </div>
+                        </div>
+
+                        <!-- 密码输入 -->
+                        <div class="space-y-2">
+                            <label for="password" class="block text-sm font-medium text-neutral-700">密码</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-500">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" id="password" name="password" class="w-full pl-10 pr-10 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-custom" placeholder="请输入密码">
+                                <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-500 hover:text-primary transition-custom">
+                                    <i class="fa fa-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 确认密码输入 -->
+                        <div class="space-y-2">
+                            <label for="password2" class="block text-sm font-medium text-neutral-700">确认密码</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-neutral-500">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                                <input type="password" id="password2" name="password2" class="w-full pl-10 pr-10 py-3 rounded-lg border border-neutral-300 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-custom" placeholder="请再次输入密码">
+                                <button type="button" id="togglePassword2" class="absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-500 hover:text-primary transition-custom">
+                                    <i class="fa fa-eye-slash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 同意条款 -->
+                        <div class="flex items-start">
+                            <input id="agree" type="checkbox" class="w-4 h-4 mt-1 text-primary focus:ring-primary border-neutral-300 rounded">
+                            <label for="agree" class="ml-2 block text-sm text-neutral-600">
+                                我已阅读并同意 <a href="#" class="text-primary hover:underline">服务条款</a> 和 <a href="#" class="text-primary hover:underline">隐私政策</a>
+                            </label>
+                        </div>
+
+                        <!-- 注册按钮 -->
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-custom scale-hover flex items-center justify-center">
+                            <span>注册</span>
+                            <i class="fa fa-user-plus ml-2"></i>
+                        </button>
+                    </form>
+
+                    <!-- 登录链接 -->
+                    <div class="mt-8 text-center">
+                        <span class="text-neutral-600">已有账号？</span>
+                        <a href="/login" class="font-medium text-primary hover:text-primary/80 transition-custom">立即登录</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部提示 -->
+            <div class="mt-6 text-center text-sm text-neutral-500">
+                <p>注册即表示您同意我们的服务条款和隐私政策</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="py-6 px-6 md:px-10 text-center text-neutral-500 text-sm">
+        <p>© 2025 安全注册系统. 保留所有权利.</p>
+    </footer>
+
+    <!-- 引用外部JavaScript文件 -->
+    <script src="/static/js/regist.js"></script>
+</body>
+</html>

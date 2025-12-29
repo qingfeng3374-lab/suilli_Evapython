@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}个人信息 - Suilli{% endblock %}
+
+{% block content %}
+<main class="flex-grow container mx-auto px-4 py-8">
+    <div class="max-w-3xl mx-auto bg-white dark:bg-dark-300 rounded-xl shadow-lg p-6 md:p-8 theme-transition">
+        <div class="text-center mb-8">
+            <h1 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark-300 dark:text-light-200">个人信息</h1>
+            <div class="w-20 h-1 bg-primary mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-col items-center">
+            <div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <i class="fa-solid fa-user text-primary text-5xl"></i>
+            </div>
+
+            <div class="w-full max-w-md space-y-4">
+                <div class="bg-light-200 dark:bg-dark-100 rounded-lg p-4 flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                        <i class="fa-solid fa-user text-primary"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">用户名</p>
+                        <p class="font-medium text-lg">{{ user.username }}</p>
+                    </div>
+                </div>
+
+                <div class="bg-light-200 dark:bg-dark-100 rounded-lg p-4 flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
+                        <i class="fa-solid fa-id-card text-primary"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">用户ID</p>
+                        <p class="font-medium text-lg">{{ user.id }}</p>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <button class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-lg transition-colors">
+                        <a href="{{ url_for('index', username=session.username, user_id=session.user_id) }}" class="py-2 font-medium hover:text-primary transition-colors">返回首页</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<!-- 如果你有页面专属脚本可以放在这里 -->
+<script>
+    // 示例：页面初始化脚本
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('个人信息页面初始化');
+    });
+</script>
+{% endblock %}
