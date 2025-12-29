@@ -455,4 +455,6 @@ def evaluate():
 # 使用__name__ == '__main__'是 Python 的惯用法，确保直接执行此脚本时才
 # 启动服务器，若其他程序调用该脚本可能父级程序会启动不同的服务器
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0', port=2026)
+    # Railway会自动设置PORT环境变量
+    port = int(os.environ.get('PORT', 2026))
+    app.run(debug=False, host='0.0.0.0', port=port)
