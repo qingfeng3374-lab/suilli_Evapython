@@ -1,0 +1,363 @@
+{% extends 'base1.html' %}
+
+{% block title %}平台介绍 - Suilli{% endblock %}
+
+{% block content %}
+<main class="container mx-auto px-4 pt-24 pb-12">
+    <!-- 介绍标题区 -->
+    <section class="mb-16 text-center">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">探索 Suilli 平台</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Suilli 是一个专为 Python 学习者打造的专业代码评测平台，提供丰富的编程题目、实时代码评测和个性化学习路径。
+        </p>
+    </section>
+
+    <!-- 平台概览 -->
+    <section class="mb-16">
+        <div class="bg-white dark:bg-dark-300 rounded-2xl shadow-elevation-1 p-8 md:p-10 theme-transition">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6">专业的 Python 学习平台</h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Suilli 提供了一个完整的 Python 学习生态系统，从基础语法到高级算法，帮助学习者循序渐进地掌握 Python 编程技能。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-secondary text-sm"></i>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400">超过 1000+ 道精选编程题目，覆盖 Python 各个知识点</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-secondary text-sm"></i>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400">实时代码评测系统，提交后立即获得结果和详细反馈</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-secondary text-sm"></i>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400">个性化学习路径，根据你的水平和目标定制学习计划</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                <i class="fa-solid fa-check text-secondary text-sm"></i>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400">详细的性能分析和优化建议，帮助你写出更高效的代码</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/python/600/400" alt="Python代码示例" class="rounded-xl shadow-elevation-2 w-full h-auto">
+                        <div class="absolute -bottom-4 -right-4 bg-primary text-white rounded-lg px-4 py-2 shadow-lg">
+                            <i class="fa-solid fa-code mr-2"></i> 超过 10,000+ 行测试代码
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能亮点 -->
+    <section class="mb-16">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">平台功能</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Suilli 提供了一系列强大的功能，帮助你更高效地学习 Python 编程
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 功能卡片 1 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-code text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">实时代码评测</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    提交代码后立即获得评测结果，查看详细的测试用例和性能分析，帮助你快速定位和修复问题。
+                </p>
+            </div>
+
+            <!-- 功能卡片 2 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-book-open text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">丰富的题库</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    从基础语法到高级算法，从简单到复杂，各种难度级别的题目满足不同学习阶段的需求。
+                </p>
+            </div>
+
+            <!-- 功能卡片 3 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-warning/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-chart-line text-warning text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">学习进度追踪</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    详细记录你的学习历程和进步情况，通过数据可视化直观了解自己的学习状况，帮助你更好地规划学习路径。
+                </p>
+            </div>
+
+            <!-- 功能卡片 4 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-danger/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-users text-danger text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">社区交流</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    加入活跃的编程社区，与其他学习者讨论问题、分享经验，共同进步。
+                </p>
+            </div>
+
+            <!-- 功能卡片 5 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-lightbulb text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">解题思路分享</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    查看优秀的解题思路和代码实现，学习他人的编程技巧和思维方式。
+                </p>
+            </div>
+
+            <!-- 功能卡片 6 -->
+            <div class="bg-white dark:bg-dark-300 rounded-xl shadow-elevation-1 p-6 card-hover theme-transition">
+                <div class="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-certificate text-secondary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">认证与奖励</h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    完成学习阶段和挑战，获得认证徽章和奖励，激励自己不断前进。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用流程 -->
+    <section class="mb-16">
+        <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">如何开始使用</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                只需简单几步，即可开始你的 Python 学习之旅
+            </p>
+        </div>
+
+        <div class="relative">
+            <!-- 连接线 -->
+            <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-0.5 bg-gray-200 dark:bg-dark-100 z-0"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                <!-- 步骤 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">1</div>
+                    <h3 class="text-xl font-semibold mb-3">注册账号</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        点击注册按钮，填写基本信息创建账号，开始你的编程之旅。
+                    </p>
+                </div>
+
+                <!-- 步骤 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">2</div>
+                    <h3 class="text-xl font-semibold mb-3">选择学习路径</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        根据你的兴趣和目标，选择适合你的学习路径和难度级别。
+                    </p>
+                </div>
+
+                <!-- 步骤 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">3</div>
+                    <h3 class="text-xl font-semibold mb-3">开始解题</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        在代码编辑器中编写代码，提交后立即获得评测结果和反馈。
+                    </p>
+                </div>
+
+                <!-- 步骤 4 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center text-2xl font-bold mb-4 shadow-lg">4</div>
+                    <h3 class="text-xl font-semibold mb-3">提升技能</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        持续学习和练习，查看详细的学习数据，不断提升你的编程技能。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习数据统计 -->
+    <section class="mb-16">
+        <div class="bg-white dark:bg-dark-300 rounded-2xl shadow-elevation-1 p-8 md:p-10 theme-transition">
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">学习数据统计</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 图表 1：题目类型分布 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">题目类型分布</h3>
+                    <div class="h-80">
+                        <canvas id="problemTypeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 图表 2：用户进步趋势 -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">用户进步趋势</h3>
+                    <div class="h-80">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 开始使用 -->
+    <section class="mb-16">
+        <div class="bg-gradient-to-r from-primary to-primary/80 rounded-2xl shadow-elevation-2 p-8 md:p-12 text-white">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4">准备好开始你的 Python 学习之旅了吗？</h2>
+                    <p class="text-white/80 mb-6 max-w-xl">
+                        加入 Suilli，与成千上万的学习者一起提升你的 Python 编程技能，开启编程职业之路。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-white text-primary hover:bg-gray-100 font-medium px-8 py-3 rounded-lg transition-all shadow-lg btn-effect">
+                            <a href="/regist">立即注册</a>
+                        </button>
+                        <button class="bg-transparent border-2 border-white text-white hover:bg-white/10 font-medium px-8 py-3 rounded-lg transition-all btn-effect">
+                            <a href="/login">已有账号？登录</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://picsum.photos/seed/coding/400/300" alt="Python编程" class="rounded-xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    // 初始化图表
+    function initCharts() {
+        // 获取当前主题
+        const isDark = document.documentElement.classList.contains('dark');
+        const textColor = isDark ? '#F1F5F9' : '#1E293B';
+        const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+
+        // 题目类型分布图表
+        const problemTypeCtx = document.getElementById('problemTypeChart').getContext('2d');
+        new Chart(problemTypeCtx, {
+            type: 'pie',
+            data: {
+                labels: ['基础语法', '数据结构', '算法', '应用开发', '项目实践'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        '#165DFF', // primary
+                        '#36D399', // secondary
+                        '#FBBD23', // warning
+                        '#F87272', // danger
+                        '#9333EA', // purple
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: textColor,
+                            font: {
+                                family: 'Inter',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 用户进步趋势图表
+        const progressCtx = document.getElementById('progressChart').getContext('2d');
+        new Chart(progressCtx, {
+            type: 'line',
+            data: {
+                labels: ['第1周', '第2周', '第3周', '第4周', '第5周', '第6周', '第7周', '第8周'],
+                datasets: [{
+                    label: '已完成题目',
+                    data: [5, 12, 18, 25, 32, 40, 48, 55],
+                    borderColor: '#165DFF',
+                    backgroundColor: 'rgba(22, 93, 255, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: '正确率',
+                    data: [60, 65, 70, 72, 78, 80, 85, 88],
+                    borderColor: '#36D399',
+                    backgroundColor: 'transparent',
+                    tension: 0.4,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: gridColor
+                        },
+                        ticks: {
+                            color: textColor
+                        }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        position: 'right',
+                        max: 100,
+                        grid: {
+                            drawOnChartArea: false
+                        },
+                        ticks: {
+                            color: textColor,
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: gridColor
+                        },
+                        ticks: {
+                            color: textColor
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: textColor,
+                            font: {
+                                family: 'Inter',
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    // 初始化图表
+    initCharts();
+</script>
+{% endblock %}
