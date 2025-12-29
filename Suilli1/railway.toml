@@ -1,0 +1,13 @@
+[build]
+builder = "python"
+
+[deploy]
+startCommand = "python app.py"
+healthcheckPath = "/"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+
+[environments]
+[environments.production]
+FLASK_ENV = "production"
+FLASK_DEBUG = "False"
